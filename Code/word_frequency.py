@@ -18,6 +18,26 @@ def histogram(source_text):
 
     return word_counts
 
+def write_histogram_to_file(hist, filename):
+    """
+    This function takes a histogram and a filename, and writes the histogram to the file. Each line contains
+    a word and its count, separated by a space.
+    """
+    with open(filename, 'w') as f:
+        for word, count in hist.items():
+            f.write(f'{word} {count}\n')
+
+
+def read_histogram_from_file(filename):
+    """
+    This function takes a filename and returns a histogram (dictionary of word counts) based on the file.
+    """
+    hist = {}
+    with open(filename, 'r') as f:
+        for line in f:
+            word, count = line.split()
+            hist[word] = int(count)
+    return hist
 
 def unique_words(hist):
     """
@@ -35,11 +55,17 @@ def frequency(word, hist):
 
 def main():
     # Read the text file
-    with open('data/sample.txt', 'r') as f:
+    with open('data/corpus.txt', 'r') as f:
         source_text = f.read()
 
     # Calculate the histogram
     hist = histogram(source_text)
+
+    # Write the histogram to a file
+    write_histogram_to_file(hist, 'data/histogram.txt')
+
+    # Read the histogram from the file
+    hist_from_file = read_histogram_from_file('data/histogram.txt')
 
     print("Number of unique words:", unique_words(hist))
     print("Frequency of 'bottle':", frequency('bottle', hist))
