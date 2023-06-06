@@ -1,6 +1,6 @@
 """Main script, uses other modules to generate sentences."""
 from flask import Flask
-from stochastic_sampling import weighted_random_word
+from Code.stochastic_sampling import weighted_random_word
 
 app = Flask(__name__)
 
