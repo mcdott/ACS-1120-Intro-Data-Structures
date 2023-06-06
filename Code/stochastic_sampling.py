@@ -20,7 +20,7 @@
 
 #     # Subtract each word's frequency from the random number until we reach 0
 #     # (words with higher frequencies will fill a larger range in this interval 
-#     # and are therefore more likely to be chosen)
+#     # and are therefore more likely to be chosen - like owning adjacent properties on a Monopoly board)
 #     for word, freq in histogram.items():
 #         rand -= freq
 #         if rand < 0:
