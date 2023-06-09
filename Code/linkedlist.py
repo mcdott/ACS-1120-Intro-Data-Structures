@@ -62,16 +62,27 @@ class LinkedList:
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Create new node to hold given item
-        # TODO: If self.is_empty() == True set the head and the tail to the new node
-        # TODO: Else append node after tail
+        Running time: O(1) because we have a reference to the tail node, 
+        so we can append directly to it."""
+        new_node = Node(item)  # O(1) time to create new node
+        if self.is_empty():  # O(1) time to check if head is None
+            self.head = new_node  # O(1) time to assign new head
+            self.tail = new_node  # O(1) time to assign new tail
+        else:
+            self.tail.next = new_node  # O(1) time to assign next of tail
+            self.tail = new_node  # O(1) time to assign new tail
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Create new node to hold given item
-        # TODO: Prepend node before head, if it exists
+        Running time: O(1) because we have a reference to the head node, 
+        so we can prepend directly to it."""
+        new_node = Node(item)  # O(1) time to create new node
+        if self.is_empty():  # O(1) time to check if head is None
+            self.head = new_node  # O(1) time to assign new head
+            self.tail = new_node  # O(1) time to assign new tail
+        else:
+            new_node.next = self.head  # O(1) time to assign next of new node
+            self.head = new_node  # O(1) time to assign new head
 
     def find(self, matcher):
         """Return an item from this linked list if it is present.
