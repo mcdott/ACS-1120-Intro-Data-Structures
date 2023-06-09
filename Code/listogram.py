@@ -20,13 +20,13 @@ class Listogram(list):
 
     def add_count(self, word, count=1):
         """Increase frequency count of given word by given count amount."""
-        for item in self:
-            if item[0] == word:
-                item[1] += count
-                self.tokens += count
-                return
-        self.append([word, count])
-        self.types += 1
+        index = self.index_of(word)
+        if index is None:
+            self.append((word, count))
+            self.types += 1
+        else:
+            word, freq = self[index]
+            self[index] = (word, freq + count)
         self.tokens += count
 
     def frequency(self, word):
@@ -57,7 +57,12 @@ class Listogram(list):
     def sample(self):
         """Return a word from this histogram, randomly sampled by weighting
         each word's probability of being chosen by its observed frequency."""
-        # TODO: Randomly choose a word based on its frequency in this histogram
+        total = 0
+        random_dart = random.randint(1, self.tokens)
+        for word, count in self:
+            total += count
+            if random_dart <= total:
+                return word
 
 
 def print_histogram(word_list):
