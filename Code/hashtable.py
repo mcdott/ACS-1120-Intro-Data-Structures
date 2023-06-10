@@ -71,7 +71,8 @@ class HashTable(object):
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
         Running time: O(n/b) where n is the number of items and b is the number of buckets. This 
-        is because we need to loop through all the key-value pairs in the bucket where the key belongs."""
+        is because we need to loop through all the key-value pairs in the bucket where the key belongs,
+        and there is the worst case potential for all keys to hash to a single bucket."""
         # Find bucket where given key belongs
         bucket = self.buckets[self._bucket_index(key)]
         # Check if key-value entry exists in bucket
@@ -83,7 +84,8 @@ class HashTable(object):
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
         Running time: O(n/b) where n is the number of items and b is the number of buckets. This 
-        is because we need to loop through all the key-value pairs in the bucket where the key belongs."""
+        is because we need to loop through all the key-value pairs in the bucket where the key belongs 
+        and there is the worst case potential for all keys to hash to a single bucket."""
         # Find bucket where given key belongs
         bucket = self.buckets[self._bucket_index(key)]
         # Check if key-value entry exists in bucket
@@ -98,7 +100,8 @@ class HashTable(object):
     def set(self, key, value):
         """Insert or update the given key with its associated value.
         Running time: O(n/b) where n is the number of items and b is the number of buckets. This 
-        is because we need to loop through all the key-value pairs in the bucket where the key belongs."""
+        is because we need to loop through all the key-value pairs in the bucket where the key belongs 
+        and there is the worst case potential for all keys to hash to a single bucket."""
         # Find bucket where given key belongs
         bucket = self.buckets[self._bucket_index(key)]
         # Check if key-value entry exists in bucket
@@ -114,7 +117,8 @@ class HashTable(object):
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
         Running time: O(n/b) where n is the number of items and b is the number of buckets. This
-        is because we need to loop through all the key-value pairs in the bucket where the key belongs."""
+        is because we need to loop through all the key-value pairs in the bucket where the key belongs 
+        and there is the worst case potential for all keys to hash to a single bucket."""
         # Find bucket where given key belongs
         bucket = self.buckets[self._bucket_index(key)]
         # Check if key-value entry exists in bucket
