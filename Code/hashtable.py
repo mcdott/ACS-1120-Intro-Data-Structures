@@ -30,7 +30,7 @@ class HashTable(object):
 
     def keys(self):
         """Return a list of all keys in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        Running time: O(n) because we need to loop through all the key-value pairs in all buckets."""
         # Collect all keys in each bucket
         all_keys = []
         for bucket in self.buckets:
@@ -40,9 +40,14 @@ class HashTable(object):
 
     def values(self):
         """Return a list of all values in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Loop through all buckets
-        # TODO: Collect all values in each bucket
+        Running time: O(n) because we need to loop through all the key-value pairs in all buckets."""
+        # Loop through all buckets
+        all_values = []
+        for bucket in self.buckets:
+            # Collect all values in each bucket
+            for _, value in bucket.items():
+                all_values.append(value)
+        return all_values
 
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table.
