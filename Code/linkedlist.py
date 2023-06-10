@@ -91,10 +91,10 @@ class LinkedList:
         or not in the list."""
         node = self.head  # O(1) time to assign new variable
         while node is not None:  # Up to n iterations
-            if matcher == node.data:  # O(1) time to check equality
-                return True  # O(1) time to return value
+            if matcher(node.data):  # O(1) time to check equality
+                return node.data  # O(1) time to return value
             node = node.next  # O(1) time to assign new variable
-        return False  # O(1) time to return value
+        return None  # O(1) time to return value
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
