@@ -51,7 +51,7 @@ class HashTable(object):
 
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        Running time: O(n) because we need to loop through all the key-value pairs in all buckets."""
         # Collect all pairs of key-value entries in each bucket
         all_items = []
         for bucket in self.buckets:
@@ -60,9 +60,13 @@ class HashTable(object):
 
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Loop through all buckets
-        # TODO: Count number of key-value entries in each bucket
+        Running time: O(n) because we need to loop through all the key-value pairs in all buckets."""
+        # Loop through all buckets
+        num_items = 0
+        for bucket in self.buckets:
+            # Count number of key-value entries in each bucket
+            num_items += bucket.length()
+        return num_items
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
