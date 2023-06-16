@@ -1,6 +1,6 @@
 """Main script, uses other modules to generate sentences."""
 from flask import Flask
-from Code.stochastic_sampling import weighted_random_word
+from Code import MarkovSentenceGenerator
 # import cleanup
 # import tokens
 # import word_count
@@ -11,13 +11,14 @@ app = Flask(__name__)
 
 # TODO: Initialize your histogram, hash table, or markov chain here.
 # Any code placed here will run only once, when the server starts.
-filename = 'onefishtogram.txt'
+corpus_path = 'data/cleaned_sample.txt'
+tweet_generator = MarkovSentenceGenerator(corpus_path)
 
 @app.route("/")
 def home():
     """Route that returns a web page containing the generated text."""
-    word = weighted_random_word(filename)
-    return f"<p>{word}</p>"
+    sentence = tweet_generator.generate_sentence(20)
+    return f"<p>{sentence}</p>"
 
 
 if __name__ == "__main__":
