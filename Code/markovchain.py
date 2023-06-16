@@ -1,41 +1,41 @@
 import random
 import os
 
-def learn_markov_chain(corpus):
-    words = corpus.split(' ')
-    m_dict = {}
+class MarkovSentenceGenerator:
+    def __init__(self, corpus_path):
+        self.corpus_path = corpus_path
+        self.markov_dict = self.learn_markov_chain()
 
-    for i in range(len(words) - 1):
-        if words[i] in m_dict:
-            m_dict[words[i]].append(words[i + 1])
-        else:
-            m_dict[words[i]] = [words[i + 1]]
 
-    return m_dict
+    def learn_markov_chain(self):
+        with open(self.corpus_path, 'r') as file:
+            corpus = file.read()
+        words = corpus.split(' ')
+        markov_dict = {}
 
-def generate_sentence(markov_dict, num_words):
-    current_word = random.choice(list(markov_dict.keys()))
-    sentence = current_word
+        for i in range(len(words) - 1):
+            if words[i] in markov_dict:
+                markov_dict[words[i]].append(words[i + 1])
+            else:
+                markov_dict[words[i]] = [words[i + 1]]
 
-    for i in range(num_words - 1):
-        if current_word in markov_dict:
-            next_word = random.choice(markov_dict[current_word])
-            sentence += ' ' + next_word
-            current_word = next_word
-        else:
-            break
+        return markov_dict
 
-    return sentence
+    def generate_sentence(self, num_words):
+        current_word = random.choice(list(self.markov_dict.keys()))
+        sentence = current_word
 
-# Path to your text file
+        for i in range(num_words - 1):
+            if current_word in self.markov_dict:
+                next_word = random.choice(self.markov_dict[current_word])
+                sentence += ' ' + next_word
+                current_word = next_word
+            else:
+                break
+
+        return sentence
+
+# Usage
 file_path = os.path.join('data', 'corpus.txt')
-
-# Read the file
-with open(file_path, 'r') as file:
-    corpus = file.read()
-
-# Learn the Markov Chain
-markov_dict = learn_markov_chain(corpus)
-
-# Generate a sentence
-print(generate_sentence(markov_dict, 20))
+generator = MarkovSentenceGenerator(file_path)
+print(generator.generate_sentence(20))
