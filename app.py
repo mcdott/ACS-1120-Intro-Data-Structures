@@ -1,11 +1,10 @@
 """Main script, uses other modules to generate sentences."""
 from flask import Flask
-from Code import MarkovSentenceGenerator
 # import cleanup
 # import tokens
 # import word_count
 # import sample
-# import sentence
+from sentence import MarkovSentenceGenerator
 
 app = Flask(__name__)
 
