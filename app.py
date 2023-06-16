@@ -1,17 +1,28 @@
 """Main script, uses other modules to generate sentences."""
 from flask import Flask
-# import cleanup
-# import tokens
-# import word_count
-# import sample
+from cleanup import TextParser
+from tokens import TextTokenizer
 from sentence import MarkovSentenceGenerator
 
 app = Flask(__name__)
 
-# TODO: Initialize your histogram, hash table, or markov chain here.
-# Any code placed here will run only once, when the server starts.
-corpus_path = 'data/cleaned_sample.txt'
-tweet_generator = MarkovSentenceGenerator(corpus_path)
+# Prepare the corpus and initialize markov chain.
+# This code will run only once, when the server starts.
+corpus_path = 'data/corpus.txt'
+cleaned_corpus_path = 'data/cleaned_corpus.txt'
+
+# Clean the corpus
+parser = TextParser(corpus_path)
+parser.save_cleaned_text(cleaned_corpus_path)
+
+# Tokenize the cleaned corpus
+with open(cleaned_corpus_path, 'r') as file:
+    cleaned_corpus = file.read()
+tokenizer = TextTokenizer(cleaned_corpus)
+tokenized_corpus = ' '.join(tokenizer.tokenize())
+
+# Generate sentences
+tweet_generator = MarkovSentenceGenerator(tokenized_corpus)
 
 @app.route("/")
 def home():
