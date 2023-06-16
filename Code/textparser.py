@@ -21,9 +21,13 @@ class TextParser:
         corpus = corpus.replace('’', "'")
         return corpus
     
+    def clean_text(self):
+        corpus = self.read_file()
+        corpus = self.remove_unwanted_punctuation(corpus)
+        corpus = self.standardize_quotes(corpus)
+        return corpus
+    
 # Usage
 parser = TextParser('data/corpus.txt')
-corpus = parser.read_file()
-corpus = parser.remove_unwanted_punctuation(corpus)
-corpus = parser.standardize_quotes(corpus)
-print(corpus)
+clean_corpus = parser.clean_text()
+print(clean_corpus)
