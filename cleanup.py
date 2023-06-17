@@ -114,6 +114,6 @@ class TextParser:
         return corpus
     
     def save_cleaned_jabberized_text(self, output_filename):
-        jabberized_corpus = self.jabberized_text()
+        jabberized_corpus = self.cleaned_jabberized_text()
         with open(output_filename, 'w') as file:
             file.write(jabberized_corpus)
