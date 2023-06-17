@@ -8,8 +8,8 @@ app = Flask(__name__)
 
 # Prepare the corpus and initialize markov chain.
 # This code will run only once, when the server starts.
-corpus_path = 'data/corpus.txt'
-cleaned_corpus_path = 'data/cleaned_corpus.txt'
+corpus_path = 'corpus.txt'
+cleaned_corpus_path = 'cleaned_corpus.txt'
 
 # Clean the corpus
 parser = TextParser(corpus_path)
