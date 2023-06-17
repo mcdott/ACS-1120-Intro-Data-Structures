@@ -10,24 +10,24 @@ class MarkovSentenceGenerator:
         words = self.tokenized_corpus
         markov_dict = {}
 
-        for i in range(len(words) - 2):
-            pair = (words[i], words[i + 1])
-            if pair in markov_dict:
-                markov_dict[pair].append(words[i + 2])
+        for i in range(len(words) - 3):
+            triple = (words[i], words[i + 1], words[i + 2])
+            if triple in markov_dict:
+                markov_dict[triple].append(words[i + 3])
             else:
-                markov_dict[pair] = [words[i + 2]]
+                markov_dict[triple] = [words[i + 3]]
 
         return markov_dict
 
     def generate_sentence(self, num_words):
-        current_pair = random.choice(list(self.markov_dict.keys()))
-        sentence = current_pair[0] + ' ' + current_pair[1]
+        current_triple = random.choice(list(self.markov_dict.keys()))
+        sentence = current_triple[0] + ' ' + current_triple[1] + ' ' + current_triple[2]
 
-        for i in range(num_words - 2):
-            if current_pair in self.markov_dict:
-                next_word = random.choice(self.markov_dict[current_pair])
+        for i in range(num_words - 3):
+            if current_triple in self.markov_dict:
+                next_word = random.choice(self.markov_dict[current_triple])
                 sentence += ' ' + next_word
-                current_pair = (current_pair[1], next_word)
+                current_triple = (current_triple[1], current_triple[2], next_word)
             else:
                 break
 
