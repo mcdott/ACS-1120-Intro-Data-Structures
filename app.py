@@ -19,7 +19,7 @@ parser.save_cleaned_text(cleaned_corpus_path)
 with open(cleaned_corpus_path, 'r') as file:
     cleaned_corpus = file.read()
 tokenizer = TextTokenizer(cleaned_corpus)
-tokenized_corpus = ' '.join(tokenizer.tokenize())
+tokenized_corpus = tokenizer.tokenize()
 
 # Generate sentences
 tweet_generator = MarkovSentenceGenerator(tokenized_corpus)

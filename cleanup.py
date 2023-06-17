@@ -27,11 +27,11 @@ class TextParser:
         corpus = self.standardize_quotes(corpus)
         return corpus
     
-    def save_cleaned_text(self):
+    def save_cleaned_text(self, output_filename):
         cleaned_corpus = self.clean_text()
-        with open(cleaned_corpus, 'w') as file:
+        with open(output_filename, 'w') as file:
             file.write(cleaned_corpus)
     
 # Usage
-parser = TextParser('corpus.txt')
-parser.save_cleaned_text()
+parser = TextParser('data/corpus.txt')
+parser.save_cleaned_text('data/cleaned_corpus.txt')

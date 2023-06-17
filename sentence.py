@@ -1,15 +1,13 @@
 import random
 
 class MarkovSentenceGenerator:
-    def __init__(self, corpus_path):
-        self.corpus_path = corpus_path
+    def __init__(self, tokenized_corpus):
+        self.tokenized_corpus = tokenized_corpus
         self.markov_dict = self.learn_markov_chain()
 
 
     def learn_markov_chain(self):
-        with open(self.corpus_path, 'r') as file:
-            corpus = file.read()
-        words = corpus.split(' ')
+        words = self.tokenized_corpus
         markov_dict = {}
 
         for i in range(len(words) - 1):
