@@ -101,19 +101,19 @@ class TextParser:
         corpus = corpus.replace('’', "'")
         return corpus
     
-    def replace_common_wonderland_words(self, corpus):
-        for wonderland_word, jabbercised_word in self.common_wonderland_words.items():
-            corpus = corpus.replace(wonderland_word, jabbercised_word)
+    def jabberize_common_wonderland_words(self, corpus):
+        for wonderland_word, jabberized_word in self.common_wonderland_words.items():
+            corpus = corpus.replace(wonderland_word, jabberized_word)
         return corpus
     
-    def preparred_text(self):
+    def cleaned_jabberized_text(self):
         corpus = self.read_file()
         corpus = self.remove_unwanted_punctuation(corpus)
         corpus = self.standardize_quotes(corpus)
-        corpus = self.replace_common_wonderland_words(corpus)
+        corpus = self.jabberize_common_wonderland_words(corpus)
         return corpus
     
-    def save_preparred_text(self, output_filename):
-        preparred_corpus = self.preparred_text()
+    def save_cleaned_jabberized_text(self, output_filename):
+        jabberized_corpus = self.jabberized_text()
         with open(output_filename, 'w') as file:
-            file.write(preparred_corpus)
+            file.write(jabberized_corpus)
