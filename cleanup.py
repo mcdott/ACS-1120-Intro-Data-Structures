@@ -29,7 +29,7 @@ class TextParser:
     
     def save_cleaned_text(self):
         cleaned_corpus = self.clean_text()
-        with open(cleaned_corpus.txt, 'w') as file:
+        with open(cleaned_corpus, 'w') as file:
             file.write(cleaned_corpus)
     
 # Usage
