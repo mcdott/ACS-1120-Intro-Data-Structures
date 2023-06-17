@@ -2,8 +2,7 @@ class TextParser:
 
     def __init__(self, corpus_path):
         self.corpus_path = corpus_path
-        self.character_names = {
-            'Alice': 'Riddlishy',
+        self.common_wonderland_words = {
             'White Rabbit': 'Hareflustious',
             'Queen of Hearts': 'Queebeheaderous',
             'King of Hearts': 'King Mildemane',
@@ -21,6 +20,46 @@ class TextParser:
             'Bill the Lizard': 'Lizascaler Billius',
             'Dodo': 'Dodgsonic',
             'Mouse': 'Rodentiquake',
+            'Wonderland': 'Wonderscape',
+            'Rabbit Hole': 'Raburrow',
+            'The Pool of Tears': 'Weepuddle',
+            'The Caucus Race': 'Rundebate',
+            'The Duchess\'s Kitchen': 'Cookduchery',
+            'Mad Tea-Party': 'Lunachai',
+            'Queen\'s Croquet Ground': 'Quequet Field',
+            'The Mock Turtle\'s Story': 'Tale-Turtlery',
+            'The Lobster Quadrille': 'Lobstrance',
+            'The Knave of Hearts\' Trial': 'Justiknavery',
+            'The White Rabbit\'s House': 'Bunnicottage',
+            'Eat Me Cake': 'Ingestibake',
+            'Drink Me Potion': 'Sipsolution',
+            'Cheshire Cat\'s Grin': 'Smileshire',
+            'Tarts of the Queen': 'Queentreats',
+            'slimy': 'slithy',
+            'lithe': 'slithy',
+            'gyrate': 'gyre',
+            'dire': 'gyre',
+            'gimlet': 'gimble',
+            'nimble': 'gimble',
+            'miserable': 'mimsy',
+            'flimsy': 'mimsy',
+            'bore': 'borogove',
+            'grove': 'borogove',
+            'from home': 'mome',
+            'rath': 'rath',
+            'wraith': 'rath',
+            'outgribe': 'outgrabe',
+            'grave': 'outgrabe',
+            'jubilant': 'jubjub',
+            'stubborn': 'jubjub',
+            'furious': 'frumious',
+            'fuming': 'frumious',
+            'gruffish': 'uffish',
+            'huffish': 'uffish',
+            'hurrah': 'callooh',
+            'hallelujah': 'callooh',
+            'oh': 'callay',
+            'yay': 'callay'
         }
 
     def read_file(self):
@@ -41,16 +80,16 @@ class TextParser:
         corpus = corpus.replace('’', "'")
         return corpus
     
-    def replace_character_names(self, corpus):
-        for original_name, jabbercised_name in self.character_names.items():
-            corpus = corpus.replace(original_name, jabbercised_name)
+    def replace_common_wonderland_words(self, corpus):
+        for wonderland_word, jabbercised_word in self.common_wonderland_words.items():
+            corpus = corpus.replace(wonderland_word, jabbercised_word)
         return corpus
     
     def preparred_text(self):
         corpus = self.read_file()
         corpus = self.remove_unwanted_punctuation(corpus)
         corpus = self.standardize_quotes(corpus)
-        corpus = self.replace_character_names(corpus)
+        corpus = self.replace_common_wonderland_words(corpus)
         return corpus
     
     def save_preparred_text(self, output_filename):
