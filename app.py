@@ -3,7 +3,7 @@ from flask import Flask, request, redirect
 from cleanup import TextParser
 from tokens import TextTokenizer
 from sentence import MarkovSentenceGenerator
-from twitter import twitter
+import twitter
 
 app = Flask(__name__)
 
