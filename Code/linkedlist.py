@@ -84,17 +84,18 @@ class LinkedList:
             new_node.next = self.head  # O(1) time to assign next of new node
             self.head = new_node  # O(1) time to assign new head
 
-    def find(self, matcher):
-        """Return an item from this linked list if it is present.
-        Best case running time: O(1) When the item is first in the list.
-        Worst case running time: O(n) When the item is last in the list 
-        or not in the list."""
-        node = self.head  # O(1) time to assign new variable
-        while node is not None:  # Up to n iterations
-            if matcher(node.data):  # O(1) time to check equality
-                return node.data  # O(1) time to return value
-            node = node.next  # O(1) time to assign new variable
-        return None  # O(1) time to return value
+def find(self, value):
+    """Return True if value is in the list, False otherwise.
+    Best case running time: O(1) When the value is first in the list.
+    Worst case running time: O(n) When the value is last in the list 
+    or not in the list."""
+    node = self.head  # O(1) time to assign new variable
+    while node is not None:  # Up to n iterations
+        if value == node.data:  # O(1) time to check equality
+            return True  # O(1) time to return value
+        node = node.next  # O(1) time to assign new variable
+    return False  # O(1) time to return value
+
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
