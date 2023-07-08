@@ -1,9 +1,8 @@
 """Main script, uses other modules to generate sentences."""
-from flask import Flask, request, redirect
+from flask import Flask, render_template
 from cleanup import TextParser
 from tokens import TextTokenizer
 from sentence import MarkovSentenceGenerator
-import twitter
 
 app = Flask(__name__)
 
@@ -29,14 +28,7 @@ tweet_generator = MarkovSentenceGenerator(tokenized_corpus)
 def home():
     """Route that returns a web page containing the generated text."""
     sentence = tweet_generator.generate_sentence(20)
-    return f"<p>{sentence}</p>"
-
-@app.route('/tweet', methods=['POST'])
-def tweet():
-    status = request.form['sentence']
-    twitter.tweet(status)
-    return redirect('/')
-
+    return render_template('home.html', sentence=sentence)
 
 if __name__ == "__main__":
     """To run the Flask server, execute `python app.py` in your terminal.
