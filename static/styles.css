@@ -1,9 +1,29 @@
+body {
+  font-family: "Cormorant Garamond", serif;
+}
+
 .container {
   width: 80%;
   margin: 0 auto;
+  text-align: center;
 }
 
 .container p {
   font-size: 24px;
   color: #333;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 20px;
+  color: #fff;
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #666;
 }
