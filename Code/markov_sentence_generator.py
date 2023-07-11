@@ -1,5 +1,6 @@
 import random
 import os
+import string
 
 class MarkovSentenceGenerator:
     def __init__(self, corpus_path):

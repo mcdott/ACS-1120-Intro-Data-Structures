@@ -1,4 +1,5 @@
 import random
+import string
 
 class MarkovSentenceGenerator:
     def __init__(self, tokenized_corpus):
@@ -18,6 +19,15 @@ class MarkovSentenceGenerator:
                 markov_dict[triple] = [words[i + 3]]
 
         return markov_dict
+    
+    def clean_sentence(self, sentence):
+        # Remove all punctuation except commas
+        sentence = ''.join(ch if ch not in string.punctuation or ch == ',' else ' ' for ch in sentence)
+
+        # Capitalize the first letter and add exclamation mark at the end
+        sentence = sentence.capitalize().strip() + '!'
+        
+        return sentence
 
     def generate_sentence(self, num_words):
         current_triple = random.choice(list(self.markov_dict.keys()))
@@ -31,4 +41,4 @@ class MarkovSentenceGenerator:
             else:
                 break
 
-        return sentence
+        return self.clean_sentence(sentence)
