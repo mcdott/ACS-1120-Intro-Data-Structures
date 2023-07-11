@@ -24,7 +24,7 @@ class MarkovSentenceGenerator:
     
     def clean_sentence(self, sentence):
         # Remove all punctuation except commas
-        sentence = ''.join(ch if ch not in string.punctuation or ch == ',' else ' ' for ch in sentence)
+        sentence = ''.join(ch if ch not in string.punctuation or ch in {',', '\''} else ' ' for ch in sentence)
 
         # Capitalize the first letter and add exclamation mark at the end
         sentence = sentence[0].upper() + sentence[1:].strip() + '!'
