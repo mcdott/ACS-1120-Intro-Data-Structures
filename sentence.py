@@ -21,13 +21,14 @@ class MarkovSentenceGenerator:
         return markov_dict
     
     def clean_sentence(self, sentence):
-        # Remove all punctuation except commas
-        sentence = ''.join(ch if ch not in string.punctuation or ch == ',' else ' ' for ch in sentence)
+            # Remove all punctuation except commas
+            sentence = ''.join(ch if ch not in string.punctuation or ch == ',' else ' ' for ch in sentence)
 
-        # Capitalize the first letter and add exclamation mark at the end
-        sentence = sentence.capitalize().strip() + '!'
-        
-        return sentence
+            # Capitalize the first letter and add exclamation mark at the end
+            sentence = sentence[0].upper() + sentence[1:].strip() + '!'
+            
+            return sentence
+
 
     def generate_sentence(self, num_words):
         current_triple = random.choice(list(self.markov_dict.keys()))
