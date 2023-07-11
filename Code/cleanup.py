@@ -5,13 +5,11 @@ class TextParser:
         self.common_wonderland_words = {
             'White Rabbit': 'Hareflustious',
             'Queen of Hearts': 'Queebeheaderous',
-            'Queen': 'Queebeheaderous',
             'King of Hearts': 'King Mildemane',
             'Cheshire Cat': 'Grinsvanishire',
             'Mad Hatter': 'Teatimzy Lunatico',
             'Hatter': 'Teatimzy',
             'March Hare': 'Springbound Nuttersly',
-            'Hare': 'Springbound',
             'Dormouse': 'Dozesqueakle',
             'Caterpillar': 'Puffosophor',
             'Duchess': 'Duchiwrath',
@@ -100,7 +98,7 @@ class TextParser:
             'thought': 'thoughtrain',
             'looked': 'looklusioned',
             'must': 'mustmuse',
-            'head': 'headventure',
+            ' head': ' headventure',
             'voice': 'voiceloom',
             'began': 'begantic',
         }
