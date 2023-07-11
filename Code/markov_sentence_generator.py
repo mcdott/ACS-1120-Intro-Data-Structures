@@ -20,6 +20,15 @@ class MarkovSentenceGenerator:
                 markov_dict[words[i]] = [words[i + 1]]
 
         return markov_dict
+    
+    def clean_sentence(self, sentence):
+        # Remove all punctuation except commas
+        sentence = ''.join(ch if ch not in string.punctuation or ch == ',' else ' ' for ch in sentence)
+
+        # Capitalize the first letter and add exclamation mark at the end
+        sentence = sentence.capitalize().strip() + '!'
+        
+        return sentence
 
     def generate_sentence(self, num_words):
         current_word = random.choice(list(self.markov_dict.keys()))
@@ -33,7 +42,7 @@ class MarkovSentenceGenerator:
             else:
                 break
 
-        return sentence
+        return self.clean_sentence(sentence)
 
 # Usage
 file_path = os.path.join('data', 'corpus.txt')
