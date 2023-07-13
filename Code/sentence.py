@@ -1,35 +1,53 @@
 import random
+import string
 
 class MarkovSentenceGenerator:
-    def __init__(self, corpus_path):
-        self.corpus_path = corpus_path
+    def __init__(self, tokenized_corpus):
+        self.tokenized_corpus = tokenized_corpus
         self.markov_dict = self.learn_markov_chain()
 
 
     def learn_markov_chain(self):
-        with open(self.corpus_path, 'r') as file:
-            corpus = file.read()
-        words = corpus.split(' ')
+        words = self.tokenized_corpus
         markov_dict = {}
 
-        for i in range(len(words) - 1):
-            if words[i] in markov_dict:
-                markov_dict[words[i]].append(words[i + 1])
+        for i in range(len(words) - 3):
+            triple = (words[i], words[i + 1], words[i + 2])
+            if triple in markov_dict:
+                markov_dict[triple].append(words[i + 3])
             else:
-                markov_dict[words[i]] = [words[i + 1]]
+                markov_dict[triple] = [words[i + 3]]
 
         return markov_dict
+    
+    def clean_sentence(self, sentence):
+            # Remove all punctuation except commas
+            sentence = ''.join(ch if ch not in string.punctuation or ch in {',', '\''} else ' ' for ch in sentence)
+
+             # Lowercase common words within the sentence
+            words = sentence.split()
+            common_sentence_starters = {'a', 'an', 'the', 'there', 'that', 'it', 'she', 'he', 'we', 'while', 'who', 'you\'re', 'when', 'they', 'this', 'is', 'are', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'may', 'might', 'must', 'can', 'could', 'of', 'for', 'and', 'or', 'nor', 'but', 'yet', 'so', 'at', 'by', 'in', 'on', 'to', 'from', 'with', 'after', 'before'}
+            for i in range(len(words)):
+                if words[i].lower() in common_sentence_starters:
+                    words[i] = words[i].lower()
+            sentence = ' '.join(words)
+
+            # Capitalize the first letter and add exclamation mark at the end
+            sentence = sentence[0].upper() + sentence[1:].strip() + '!'
+            
+            return sentence
+
 
     def generate_sentence(self, num_words):
-        current_word = random.choice(list(self.markov_dict.keys()))
-        sentence = current_word
+        current_triple = random.choice(list(self.markov_dict.keys()))
+        sentence = current_triple[0] + ' ' + current_triple[1] + ' ' + current_triple[2]
 
-        for i in range(num_words - 1):
-            if current_word in self.markov_dict:
-                next_word = random.choice(self.markov_dict[current_word])
+        for i in range(num_words - 3):
+            if current_triple in self.markov_dict:
+                next_word = random.choice(self.markov_dict[current_triple])
                 sentence += ' ' + next_word
-                current_word = next_word
+                current_triple = (current_triple[1], current_triple[2], next_word)
             else:
                 break
 
-        return sentence
+        return self.clean_sentence(sentence)

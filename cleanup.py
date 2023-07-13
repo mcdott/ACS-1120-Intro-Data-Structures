@@ -1,3 +1,5 @@
+import re
+
 class TextParser:
 
     def __init__(self, corpus_path):
@@ -120,6 +122,10 @@ class TextParser:
         corpus = corpus.replace('‘', "'")
         corpus = corpus.replace('’', "'")
         return corpus
+    
+    def remove_chapter_headings(self, corpus):
+        # Regex to match "CHAPTER " followed by one or more Roman numerals
+        return re.sub(r'CHAPTER [IVXLC]+', '', corpus)
     
     def jabberize_common_wonderland_words(self, corpus):
         for wonderland_word, jabberized_word in self.common_wonderland_words.items():

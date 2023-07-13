@@ -1,3 +1,5 @@
+import re
+
 class TextParser:
 
     def __init__(self, corpus_path):
@@ -77,27 +79,27 @@ class TextParser:
             'huffish': 'uffish',
             'hurrah': 'callooh',
             'hallelujah': 'callooh',
-            'oh': 'callay',
+            ' oh ': ' callay ',
             'yay': 'callay',
             'time': 'timension',
             'eyes': 'eyescapes',
             'door': 'doorniverse',
-            'day': 'daydreamsicle',
+            ' day ': ' daydreamsicle ',
             'white': 'whilight',
             'large': 'largeful',
             'small': 'smallsome',
             'round': 'roundorama',
             'book': 'booksplore',
-            'arm': 'armstrong',
+            ' arm': ' armstrong',
             'feet': 'feetstumps',
             'garden': 'gardenchant',
             'heart': 'heartmosphere',
             'game': 'gamestacy',
-            'see': 'seeclipse',
+            'see ': 'seeclipse ',
             'never': 'neverdawn',
             'thought': 'thoughtrain',
             'looked': 'looklusioned',
-            'must': 'mustmuse',
+            'must ': 'mustmuse ',
             ' head': ' headventure',
             'voice': 'voiceloom',
             'began': 'begantic',
@@ -120,6 +122,10 @@ class TextParser:
         corpus = corpus.replace('‘', "'")
         corpus = corpus.replace('’', "'")
         return corpus
+    
+    def remove_chapter_headings(self, corpus):
+        # Regex to match "CHAPTER " followed by one or more Roman numerals
+        return re.sub(r'CHAPTER [IVXLC]+', '', corpus)
     
     def jabberize_common_wonderland_words(self, corpus):
         for wonderland_word, jabberized_word in self.common_wonderland_words.items():

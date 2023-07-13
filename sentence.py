@@ -26,7 +26,7 @@ class MarkovSentenceGenerator:
 
              # Lowercase common words within the sentence
             words = sentence.split()
-            common_sentence_starters = {'a', 'an', 'the', 'that', 'it', 'she', 'he', 'they', 'this', 'is', 'are', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'may', 'might', 'must', 'can', 'could', 'of', 'for', 'and', 'or', 'nor', 'but', 'yet', 'so', 'at', 'by', 'in', 'on', 'to', 'from', 'with', 'after', 'before'}
+            common_sentence_starters = {'a', 'an', 'the', 'there', 'that', 'it', 'she', 'he', 'we', 'while', 'who', 'you\'re', 'when', 'they', 'this', 'is', 'are', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'may', 'might', 'must', 'can', 'could', 'of', 'for', 'and', 'or', 'nor', 'but', 'yet', 'so', 'at', 'by', 'in', 'on', 'to', 'from', 'with', 'after', 'before'}
             for i in range(len(words)):
                 if words[i].lower() in common_sentence_starters:
                     words[i] = words[i].lower()
