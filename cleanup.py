@@ -155,6 +155,7 @@ class TextParser:
         # Regex to match "CHAPTER " followed by one or more Roman numerals
         return re.sub(r'CHAPTER [IVXLC]+', '', corpus)
     
+    # Use of 'spacy' was causing Render deploy to fail
     # def lowercase_non_proper(self, corpus):
     #     doc = nlp(corpus)
     #     result = []

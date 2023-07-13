@@ -1,8 +1,8 @@
 import re
 import string
-import spacy
+# import spacy
 
-nlp = spacy.load("en_core_web_sm")
+# nlp = spacy.load("en_core_web_sm")
 
 class TextParser:
 
@@ -155,15 +155,16 @@ class TextParser:
         # Regex to match "CHAPTER " followed by one or more Roman numerals
         return re.sub(r'CHAPTER [IVXLC]+', '', corpus)
     
-    def lowercase_non_proper(self, corpus):
-        doc = nlp(corpus)
-        result = []
-        for token in doc:
-            if token.pos_ == "PROPN":
-                result.append(token.text)
-            else:
-                result.append(token.text.lower())
-        return ' '.join(result)
+    # Use of 'spacy' was causing Render deploy to fail
+    # def lowercase_non_proper(self, corpus):
+    #     doc = nlp(corpus)
+    #     result = []
+    #     for token in doc:
+    #         if token.pos_ == "PROPN":
+    #             result.append(token.text)
+    #         else:
+    #             result.append(token.text.lower())
+    #     return ' '.join(result)
     
     def jabberize_common_wonderland_words(self, corpus):
         for wonderland_word, jabberized_word in self.common_wonderland_words.items():
@@ -175,6 +176,7 @@ class TextParser:
         corpus = self.remove_unwanted_punctuation(corpus)
         corpus = self.standardize_quotes(corpus)
         corpus = self.remove_chapter_headings(corpus) 
+        # corpus = self.lowercase_non_proper(corpus)
         corpus = self.jabberize_common_wonderland_words(corpus)
         return corpus
     
